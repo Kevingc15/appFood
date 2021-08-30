@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    username: root
+    password: kevinacho15
+    url: jdbc:mysql://localhost:3306/prueba
+server:
+  port: 8881
