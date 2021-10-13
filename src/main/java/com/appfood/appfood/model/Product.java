@@ -1,21 +1,40 @@
 package com.appfood.appfood.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Builder
 @Getter
 @Setter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "product")
 public class Product {
 
-    private final String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false)
+    private Integer id;
 
-    private final String description;
+    private String name;
 
-    private final BigDecimal price;
+    private String description;
 
-    private final String category;
+    private BigDecimal price;
+
+    private String category;
+
+    private String image;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orden_id", nullable = false)
+    private Order orden;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id", nullable = false)
+    private Menu menu;
+
 }
